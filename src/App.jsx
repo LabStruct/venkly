@@ -29,7 +29,7 @@ const App = () => {
     e.preventDefault();
     if (!searchId) return;
     setLoading(true);
-    // This connects to your 'submissions' table
+    // This connects to; your 'submissions' table
     const { data, error } = await supabase
       .from('submissions')
       .select('*')
@@ -44,25 +44,46 @@ const App = () => {
   };
 
 const handleFormSubmit = async (e) => {
-  e.preventDefault();
-  setLoading(true);
+    e.preventDefault();
+    setLoading(true);
 
-  const id = `SILAB-${Math.floor(1000 + Math.random() * 9000)}`;
-  
-  // 1. Upload File to Supabase Storage
-  const file = selectedFile;
-  const fileExt = file.name.split('.').pop();
-  const fileName = `${id}.${fileExt}`;
-  
-  const { data: uploadData, error: uploadError } = await supabase.storage
-    .from('design-files')
-    .upload(fileName, file);
+    const id = `SILAB-${Math.floor(1000 + Math.random() * 9000)}`;
+    
+    // 1. Upload File to Supabase Storage
+    const file = selectedFile;
+    const fileExt = file.name.split('.').pop();
+    const fileName = `${id}.${fileExt}`;
+    
+    const { data: uploadData, error: uploadError } = await supabase.storage
+      .from('design-files')
+      .upload(fileName, file);
 
-  if (uploadError) {
-    alert("Error uploading file");
+    if (uploadError) {
+      alert("Error uploading file: " + uploadError.message);
+      setLoading(false);
+      return;
+    }
+
+    // 2. Save Submission Details to Database Table
+    // This part ensures the 'View Results' lookup can actually find the project later
+    const { error: dbError } = await supabase
+      .from('submissions')
+      .insert([{ 
+        submission_id: id, 
+        project_title: projectTitle, 
+        file_url: fileName,
+        status: 'Under Review' 
+      }]);
+
+    if (!dbError) {
+      setSubmissionId(id);
+      setSubmitted(true);
+    } else {
+      alert("Error saving to database: " + dbError.message);
+    }
+    
     setLoading(false);
-    return;
-  }
+  };
 
   // 2. Save Submission Details to Database
   const { error: dbError } = await supabase
