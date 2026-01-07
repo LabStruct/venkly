@@ -5,8 +5,8 @@ import {
 } from 'lucide-react';
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = 'https://your-project-url.supabase.co';
-const supabaseKey = 'your-anon-key-here';
+const supabaseUrl = 'https://rtllzorijfwihfrydncg.supabase.co';
+const supabaseKey = 'sb_publishable_LFKAeATxFCXRb3uG3bq2jQ_uqQETKeU';
 const supabase = createClient(supabaseUrl, supabaseKey);
 const App = () => {
   const [currentPage, setCurrentPage] = useState('home');
