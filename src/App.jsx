@@ -1,13 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { 
   Upload, Wind, BarChart3, CheckCircle, AlertCircle, 
-  FileText, Clipboard, ChevronRight, Info, XCircle, Gauge
+  FileText, Clipboard, ChevronRight, Info, XCircle, Gauge, Search, Download
 } from 'lucide-react';
 
 const App = () => {
   const [currentPage, setCurrentPage] = useState('home');
   const [submitted, setSubmitted] = useState(false);
   const [submissionId, setSubmissionId] = useState('');
+  
+  // FIXED: Added missing definitions required by your code
+  const [loading, setLoading] = useState(false);
+  const [projectTitle, setProjectTitle] = useState('');
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [searchId, setSearchId] = useState('');
+  const [foundResult, setFoundResult] = useState(null);
+  const fileInputRef = useRef(null);
 
   const navItems = [
     { id: 'home', label: 'Home' },
@@ -15,6 +23,25 @@ const App = () => {
     { id: 'submit', label: 'Submit Design' },
     { id: 'results', label: 'View Results' }
   ];
+
+  // FIXED: Added handleLookup so the "Check" button works
+  const handleLookup = async (e) => {
+    e.preventDefault();
+    if (!searchId) return;
+    setLoading(true);
+    // This connects to your 'submissions' table
+    const { data, error } = await supabase
+      .from('submissions')
+      .select('*')
+      .eq('submission_id', searchId)
+      .single();
+    if (error || !data) {
+      setFoundResult('not-found');
+    } else {
+      setFoundResult(data);
+    }
+    setLoading(false);
+  };
 
 const handleFormSubmit = async (e) => {
   e.preventDefault();
@@ -33,6 +60,7 @@ const handleFormSubmit = async (e) => {
 
   if (uploadError) {
     alert("Error uploading file");
+    setLoading(false);
     return;
   }
 
@@ -97,12 +125,12 @@ const ResultsPage = () => (
               </div>
               <div className="text-right">
                 <p className="text-xs font-bold text-slate-400 uppercase tracking-tighter">Submitted On</p>
-                <p className="font-bold text-slate-700">{foundResult.date}</p>
+                <p className="font-bold text-slate-700">{foundResult.date || new Date().toLocaleDateString()}</p>
               </div>
             </div>
 
             <div className="bg-slate-50 p-6 rounded-2xl border border-slate-200">
-              <h4 className="font-bold text-slate-900 mb-1">{foundResult.project}</h4>
+              <h4 className="font-bold text-slate-900 mb-1">{foundResult.project_title || foundResult.project}</h4>
               <p className="text-sm text-slate-500">Your design is currently being screened for wind tunnel safety and dimensional accuracy.</p>
             </div>
 
@@ -255,7 +283,7 @@ const ResultsPage = () => (
             </h3>
             <div>
               <label className="block text-sm font-bold text-slate-700 mb-2">Project Title</label>
-              <input required type="text" className="w-full p-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none transition-all" placeholder="e.g. Winglet Var-1" />
+              <input required type="text" className="w-full p-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none transition-all" placeholder="e.g. Winglet Var-1" value={projectTitle} onChange={(e) => setProjectTitle(e.target.value)} />
             </div>
             <div>
               <label className="block text-sm font-bold text-slate-700 mb-2">Test Type</label>
@@ -276,16 +304,13 @@ const ResultsPage = () => (
             <h3 className="font-bold text-lg flex items-center gap-2 text-blue-600">
               <Upload size={20} /> Design Files
             </h3>
-            <div className="border-2 border-dashed border-slate-200 rounded-2xl p-8 text-center hover:border-blue-400 transition-colors cursor-pointer group">
+            <div onClick={() => fileInputRef.current.click()} className={`border-2 border-dashed rounded-2xl p-8 text-center hover:border-blue-400 transition-colors cursor-pointer group ${selectedFile ? 'border-blue-500 bg-blue-50' : 'border-slate-200'}`}>
               <div className="bg-blue-50 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-blue-100">
                 <Upload size={24} className="text-blue-600" />
               </div>
-              <p className="text-sm font-bold text-slate-700">Upload CAD Model</p>
+              <p className="text-sm font-bold text-slate-700">{selectedFile ? selectedFile.name : 'Upload CAD Model'}</p>
               <p className="text-xs text-slate-400 mt-1">STL, STEP, or IGES formats</p>
-            </div>
-            <div>
-              <label className="block text-sm font-bold text-slate-700 mb-2">Supporting Docs (Optional)</label>
-              <input type="file" className="text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-bold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" />
+              <input type="file" ref={fileInputRef} className="hidden" onChange={(e) => setSelectedFile(e.target.files[0])} />
             </div>
           </div>
 
@@ -309,8 +334,8 @@ const ResultsPage = () => (
           </div>
 
           <div className="md:col-span-2 pt-6">
-            <button type="submit" className="w-full bg-blue-600 text-white py-5 rounded-2xl font-black text-xl hover:bg-blue-700 hover:scale-[1.01] active:scale-[0.99] transition-all shadow-lg shadow-blue-200 flex items-center justify-center gap-3">
-              Submit Design for Testing <ChevronRight size={24} />
+            <button type="submit" disabled={loading} className="w-full bg-blue-600 text-white py-5 rounded-2xl font-black text-xl hover:bg-blue-700 hover:scale-[1.01] active:scale-[0.99] transition-all shadow-lg shadow-blue-200 flex items-center justify-center gap-3">
+              {loading ? "Uploading..." : "Submit Design for Testing"} <ChevronRight size={24} />
             </button>
           </div>
         </form>
@@ -379,11 +404,7 @@ const ResultsPage = () => (
         {currentPage === 'home' && <HomePage />}
         {currentPage === 'capabilities' && <CapabilitiesPage />}
         {currentPage === 'submit' && <SubmitPage />}
-        {currentPage === 'results' && (
-          <div className="text-center py-20 bg-white rounded-3xl border border-slate-200">
-            <h2 className="text-2xl font-bold text-slate-400 italic">Results Lookup System Coming Soon</h2>
-          </div>
-        )}
+        {currentPage === 'results' && <ResultsPage />}
       </main>
     </div>
   );
