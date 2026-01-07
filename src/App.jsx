@@ -3,7 +3,11 @@ import {
   Upload, Wind, BarChart3, CheckCircle, AlertCircle, 
   FileText, Clipboard, ChevronRight, Info, XCircle, Gauge, Search, Download
 } from 'lucide-react';
+import { createClient } from '@supabase/supabase-js';
 
+const supabaseUrl = 'https://your-project-url.supabase.co';
+const supabaseKey = 'your-anon-key-here';
+const supabase = createClient(supabaseUrl, supabaseKey);
 const App = () => {
   const [currentPage, setCurrentPage] = useState('home');
   const [submitted, setSubmitted] = useState(false);
