@@ -85,22 +85,6 @@ const handleFormSubmit = async (e) => {
     setLoading(false);
   };
 
-  // 2. Save Submission Details to Database
-  const { error: dbError } = await supabase
-    .from('submissions')
-    .insert([{ 
-      submission_id: id, 
-      project_title: projectTitle, 
-      file_url: fileName,
-      status: 'Under Review' 
-    }]);
-
-  if (!dbError) {
-    setSubmissionId(id);
-    setSubmitted(true);
-  }
-  setLoading(false);
-};
 
 const ResultsPage = () => (
     <div className="max-w-4xl mx-auto space-y-8 pb-20">
