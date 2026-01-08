@@ -8,12 +8,13 @@ import { createClient } from '@supabase/supabase-js';
 const supabaseUrl = 'https://rtllzorijfwihfrydncg.supabase.co';
 const supabaseKey = 'sb_publishable_LFKAeATxFCXRb3uG3bq2jQ_uqQETKeU';
 const supabase = createClient(supabaseUrl, supabaseKey);
+
 const App = () => {
+  const [description, setDescription] = useState('');
   const [currentPage, setCurrentPage] = useState('home');
   const [submitted, setSubmitted] = useState(false);
   const [submissionId, setSubmissionId] = useState('');
   
-  // FIXED: Added missing definitions required by your code
   const [loading, setLoading] = useState(false);
   const [projectTitle, setProjectTitle] = useState('');
   const [selectedFile, setSelectedFile] = useState(null);
@@ -28,12 +29,10 @@ const App = () => {
     { id: 'results', label: 'View Results' }
   ];
 
-  // FIXED: Added handleLookup so the "Check" button works
   const handleLookup = async (e) => {
     e.preventDefault();
     if (!searchId) return;
     setLoading(true);
-    // This connects to; your 'submissions' table
     const { data, error } = await supabase
       .from('submissions')
       .select('*')
@@ -53,7 +52,6 @@ const handleFormSubmit = async (e) => {
 
     const id = `SILAB-${Math.floor(1000 + Math.random() * 9000)}`;
     
-    // 1. Upload File to Supabase Storage
     const file = selectedFile;
     const fileExt = file.name.split('.').pop();
     const fileName = `${id}.${fileExt}`;
@@ -68,13 +66,12 @@ const handleFormSubmit = async (e) => {
       return;
     }
 
-    // 2. Save Submission Details to Database Table
-    // This part ensures the 'View Results' lookup can actually find the project later
     const { error: dbError } = await supabase
       .from('submissions')
       .insert([{ 
         submission_id: id, 
         project_title: projectTitle, 
+        description: description,
         file_url: fileName,
         status: 'Under Review' 
       }]);
@@ -87,9 +84,7 @@ const handleFormSubmit = async (e) => {
     }
     
     setLoading(false);
-  };
-
-
+};
 const ResultsPage = () => (
     <div className="max-w-4xl mx-auto space-y-8 pb-20">
       <div className="mb-10 text-center">
@@ -304,8 +299,14 @@ const ResultsPage = () => (
             </div>
             <div>
               <label className="block text-sm font-bold text-slate-700 mb-2">Brief Description</label>
-              <textarea required rows="4" className="w-full p-3 rounded-xl border border-slate-200 outline-none" placeholder="Purpose, expected outcomes..."></textarea>
-            </div>
+              <textarea 
+                required 
+                rows="4" 
+                className="w-full p-3 rounded-xl border border-slate-200 outline-none" 
+                placeholder="Purpose, expected outcomes..."
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+              ></textarea>
           </div>
 
           {/* B. Design Files */}
