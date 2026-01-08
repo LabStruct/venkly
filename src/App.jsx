@@ -152,6 +152,18 @@ const ResultsPage = () => (
       </div>
     </div>
   );
+  <div className="grid grid-cols-2 gap-4">
+  <button 
+    onClick={() => window.open(`${supabaseUrl}/storage/v1/object/public/design-files/${foundResult.file_url}`)}
+    className="p-4 rounded-2xl border border-blue-200 text-blue-600 text-sm font-bold flex flex-col items-center gap-2 hover:bg-blue-50 transition-all"
+  >
+    <Download size={20} /> Download Data
+  </button>
+  
+  <button className="p-4 rounded-2xl border border-slate-200 text-slate-400 text-sm font-bold flex flex-col items-center gap-2 cursor-not-allowed">
+    <BarChart3 size={20} /> Analysis PDF
+  </button>
+</div>
 
   const CapabilitiesPage = () => (
     <div className="max-w-4xl mx-auto space-y-12 pb-20">
