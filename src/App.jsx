@@ -50,7 +50,7 @@ const handleFormSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
-    const id = `SILAB-${Math.floor(1000 + Math.random() * 9000)}`;
+    const id = `Venkly-${Math.floor(1000 + Math.random() * 9000)}`;
     
     const file = selectedFile;
     const fileExt = file.name.split('.').pop();
@@ -99,7 +99,7 @@ const ResultsPage = () => (
             <div className="flex gap-2">
               <input 
                 type="text" 
-                placeholder="e.g. SILAB-1234"
+                placeholder="e.g. Venkly-1234"
                 className="flex-1 p-4 rounded-2xl border border-slate-200 outline-none focus:ring-2 focus:ring-blue-500 font-mono"
                 value={searchId}
                 onChange={(e) => setSearchId(e.target.value.toUpperCase())}
@@ -169,7 +169,7 @@ const ResultsPage = () => (
     <div className="max-w-4xl mx-auto space-y-12 pb-20">
       <div className="mb-10">
         <h2 className="text-3xl font-black text-slate-900 tracking-tight">Technical Capabilities</h2>
-        <p className="text-slate-500 mt-2">Experimental constraints and facility specifications for the SILAB Wind Tunnel.</p>
+        <p className="text-slate-500 mt-2">Experimental constraints and facility specifications for the Venkly Wind Tunnel.</p>
       </div>
 
       {/* Wind Tunnel Specs */}
@@ -230,7 +230,7 @@ const ResultsPage = () => (
             <Info size={20} className="text-blue-400" /> Experimental Reality
           </h3>
           <p className="text-slate-400 text-sm leading-relaxed max-w-2xl">
-            SILAB focuses on <strong>educational analysis and design iteration</strong>. 
+            Venkly focuses on <strong>educational analysis and design iteration</strong>. 
             Results are influenced by scale effects and blockage. We emphasize comparative 
             insights over absolute full-scale prediction. Measurement uncertainty is 
             treated as a core part of the engineering experience.
@@ -408,7 +408,7 @@ const ResultsPage = () => (
     <div className="min-h-screen bg-slate-50 p-4 md:p-8 font-sans">
       <nav className="max-w-4xl mx-auto flex items-center justify-between mb-12 bg-white p-3 rounded-2xl border border-slate-200 shadow-sm">
         <div className="flex items-center gap-2 font-black text-xl tracking-tighter text-blue-600 px-4">
-          <Wind /> SILAB
+          <Wind /> Venkly
         </div>
         <div className="flex gap-1">
           {navItems.map(item => (
