@@ -307,6 +307,7 @@ const ResultsPage = () => (
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
               ></textarea>
+            </div>
           </div>
 
           {/* B. Design Files */}
