@@ -379,7 +379,8 @@ const ResultsPage = () => (
           WIND TUNNEL TESTING FOR STEM STUDENTS.
         </h1>
         <p className="text-xl opacity-80 mb-10 max-w-2xl mx-auto font-medium">
-          Bridge the gap between CAD and Reality. Submit designs, get raw sensor data, and validate your engineering using our wind tunnel technology.
+          Use your CAD model for wind tunnel testing, where students can access free physical wind tunnel results. The best file formats to submit CAD models are .step and .stl. It is low-cost (free), and can be used for scaled models!
+          
         </p>
         <button 
           onClick={() => setCurrentPage('submit')}
