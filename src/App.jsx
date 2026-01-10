@@ -169,7 +169,7 @@ const ResultsPage = () => (
     <div className="max-w-4xl mx-auto space-y-12 pb-20">
       <div className="mb-10">
         <h2 className="text-3xl font-black text-slate-900 tracking-tight">Technical Capabilities</h2>
-        <p className="text-slate-500 mt-2">Experimental constraints and facility specifications for the Venkly Wind Tunnel.</p>
+        <p className="text-slate-500 mt-2">Experimental constraints and facility specifications for the Venkly Wind Tunnel to experiment with your aerodynamics.</p>
       </div>
 
       {/* Wind Tunnel Specs */}
@@ -241,7 +241,7 @@ const ResultsPage = () => (
           <div className="mt-8 grid md:grid-cols-2 gap-6 border-t border-slate-800 pt-8">
             <div>
               <h4 className="font-bold text-blue-400 text-xs uppercase tracking-widest mb-2">Data Outputs</h4>
-              <p className="text-sm text-slate-300">CSV Numerical Datasets, Force vs Wind Speed Graphs, Comparative Performance Plots.</p>
+              <p className="text-sm text-slate-300">CSV Numerical Datasets, Force vs Wind Speed Graphs, Comparative Performance Plots. Aerodynamic Forces with Flow Visualisation and Data Validation using the free Venkly Wind Tunnel.</p>
             </div>
             <div>
               <h4 className="font-bold text-blue-400 text-xs uppercase tracking-widest mb-2">Educational Value</h4>
@@ -376,7 +376,7 @@ const ResultsPage = () => (
           <Wind className="absolute top-10 right-10 scale-[5]" />
         </div>
         <h1 className="text-6xl font-black mb-6 tracking-tighter leading-none">
-          WIND TUNNEL TESTING FOR STEM STUDENTS.
+          WIND TUNNEL TESTING FOR STEM STUDENTS
         </h1>
         <p className="text-xl opacity-80 mb-10 max-w-2xl mx-auto font-medium">
           Use your CAD model for wind tunnel testing, where students can access free physical wind tunnel results. The best file formats to submit CAD models are .step and .stl. It is low-cost (free), and can be used for scaled models!
