@@ -410,7 +410,6 @@ const ResultsPage = () => (
   );
 
   return (
-    import { Analytics } from "@vercel/analytics/next"
     // Added 'flex flex-col' and 'min-h-screen' to the container
     <div className="min-h-screen bg-slate-50 p-4 md:p-8 font-sans flex flex-col">
       <nav className="max-w-4xl mx-auto w-full flex items-center justify-between mb-12 bg-white p-3 rounded-2xl border border-slate-200 shadow-sm">
