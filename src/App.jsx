@@ -1,10 +1,12 @@
-import { Analytics } from "@vercel/analytics/next"
+import { Analytics } from "@vercel/analytics/react";
 import React, { useState, useRef } from 'react';
 import { 
   Upload, Wind, BarChart3, CheckCircle, AlertCircle, 
   FileText, Clipboard, ChevronRight, Info, XCircle, Gauge, Search, Download
 } from 'lucide-react';
 import { createClient } from '@supabase/supabase-js';
+
+// ... all your Supabase config and Page components go here ...
 
 const supabaseUrl = 'https://rtllzorijfwihfrydncg.supabase.co';
 const supabaseKey = 'sb_publishable_LFKAeATxFCXRb3uG3bq2jQ_uqQETKeU';
