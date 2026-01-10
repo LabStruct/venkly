@@ -207,6 +207,9 @@ const ResultsPage = () => (
             <li>• Comparative drag-focused designs</li>
             <li>• Educational airflow demonstrations</li>
             <li>• Relative performance trend analysis</li>
+            <li>• Great for Wind Tunnel Testing for STEM</li>
+            <li>• Student-friendly</li>
+
           </ul>
         </div>
         <div className="bg-rose-50/50 p-8 rounded-3xl border border-rose-100">
@@ -373,10 +376,10 @@ const ResultsPage = () => (
           <Wind className="absolute top-10 right-10 scale-[5]" />
         </div>
         <h1 className="text-6xl font-black mb-6 tracking-tighter leading-none">
-          REAL WIND TUNNEL TESTING.
+          WIND TUNNEL TESTING FOR STEM STUDENTS.
         </h1>
         <p className="text-xl opacity-80 mb-10 max-w-2xl mx-auto font-medium">
-          Bridge the gap between CAD and Reality. Submit designs, get raw sensor data, and validate your engineering.
+          Bridge the gap between CAD and Reality. Submit designs, get raw sensor data, and validate your engineering using our wind tunnel technology.
         </p>
         <button 
           onClick={() => setCurrentPage('submit')}
