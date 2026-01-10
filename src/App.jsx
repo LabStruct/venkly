@@ -437,5 +437,11 @@ const ResultsPage = () => (
     </div>
   );
 };
+<footer>
+    <p>&copy; <span id="year"></span> Siddharth Santhosh. All rights reserved.</p>
+</footer>
 
+<script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+</script>
 export default App;
