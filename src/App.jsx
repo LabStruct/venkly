@@ -410,34 +410,26 @@ const ResultsPage = () => (
   );
 
   return (
-    <div className="min-h-screen bg-slate-50 p-4 md:p-8 font-sans">
-      <nav className="max-w-4xl mx-auto flex items-center justify-between mb-12 bg-white p-3 rounded-2xl border border-slate-200 shadow-sm">
-        <div className="flex items-center gap-2 font-black text-xl tracking-tighter text-blue-600 px-4">
-          <Wind /> Venkly
-        </div>
-        <div className="flex gap-1">
-          {navItems.map(item => (
-            <button 
-              key={item.id}
-              onClick={() => {setCurrentPage(item.id); setSubmitted(false);}}
-              className={`px-4 py-2 rounded-xl text-sm font-bold transition-all ${currentPage === item.id ? 'bg-blue-600 text-white shadow-lg shadow-blue-100' : 'text-slate-500 hover:bg-slate-50'}`}
-            >
-              {item.label}
-            </button>
-          ))}
-        </div>
+    import { Analytics } from "@vercel/analytics/next"
+    // Added 'flex flex-col' and 'min-h-screen' to the container
+    <div className="min-h-screen bg-slate-50 p-4 md:p-8 font-sans flex flex-col">
+      <nav className="max-w-4xl mx-auto w-full flex items-center justify-between mb-12 bg-white p-3 rounded-2xl border border-slate-200 shadow-sm">
+        {/* ... Nav Content ... */}
       </nav>
 
-      <main className="max-w-6xl mx-auto">
+      {/* Added 'flex-grow' to the main content area */}
+      <main className="max-w-6xl mx-auto flex-grow w-full">
         {currentPage === 'home' && <HomePage />}
         {currentPage === 'capabilities' && <CapabilitiesPage />}
         {currentPage === 'submit' && <SubmitPage />}
         {currentPage === 'results' && <ResultsPage />}
       </main>
 
-      <footer className="max-w-4xl mx-auto text-center py-6 text-sm text-slate-500">
+      <footer className="max-w-4xl mx-auto w-full text-center py-10 text-sm text-slate-500 border-t border-slate-200 mt-12">
         <p>&copy; {new Date().getFullYear()} Siddharth Santhosh. All rights reserved.</p>
       </footer>
+      
+      <Analytics />
     </div>
   );
 };
