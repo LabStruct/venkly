@@ -409,44 +409,35 @@ const ResultsPage = () => (
     </div>
   );
 
-return (
-    <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
-      <div className="flex-grow p-4 md:p-8">
-        <nav className="max-w-4xl mx-auto flex items-center justify-between mb-12 bg-white p-3 rounded-2xl border border-slate-200 shadow-sm">
-          <div className="flex items-center gap-2 font-black text-xl tracking-tighter text-blue-600 px-4">
-            <Wind /> Venkly
-          </div>
-          <div className="flex gap-1">
-            {navItems.map(item => (
-              <button 
-                key={item.id}
-                onClick={() => {setCurrentPage(item.id); setSubmitted(false);}}
-                className={`px-4 py-2 rounded-xl text-sm font-bold transition-all ${currentPage === item.id ? 'bg-blue-600 text-white shadow-lg shadow-blue-100' : 'text-slate-500 hover:bg-slate-50'}`}
-              >
-                {item.label}
-              </button>
-            ))}
-          </div>
-        </nav>
-
-        <main className="max-w-6xl mx-auto">
-          {currentPage === 'home' && <HomePage />}
-          {currentPage === 'capabilities' && <CapabilitiesPage />}
-          {currentPage === 'submit' && <SubmitPage />}
-          {currentPage === 'results' && <ResultsPage />}
-        </main>
-      </div>
-
-      {/* --- ADDED FOOTER HERE --- */}
-      <footer className="w-full py-8 mt-auto border-t border-slate-200 bg-white">
-        <div className="max-w-6xl mx-auto px-8 text-center">
-          <p className="text-slate-500 text-sm font-medium">
-            &copy; 2026 Siddharth Santhosh. All rights reserved.
-          </p>
+  return (
+    <div className="min-h-screen bg-slate-50 p-4 md:p-8 font-sans">
+      <nav className="max-w-4xl mx-auto flex items-center justify-between mb-12 bg-white p-3 rounded-2xl border border-slate-200 shadow-sm">
+        <div className="flex items-center gap-2 font-black text-xl tracking-tighter text-blue-600 px-4">
+          <Wind /> Venkly
         </div>
+        <div className="flex gap-1">
+          {navItems.map(item => (
+            <button 
+              key={item.id}
+              onClick={() => {setCurrentPage(item.id); setSubmitted(false);}}
+              className={`px-4 py-2 rounded-xl text-sm font-bold transition-all ${currentPage === item.id ? 'bg-blue-600 text-white shadow-lg shadow-blue-100' : 'text-slate-500 hover:bg-slate-50'}`}
+            >
+              {item.label}
+            </button>
+          ))}
+        </div>
+      </nav>
+
+      <main className="max-w-6xl mx-auto">
+        {currentPage === 'home' && <HomePage />}
+        {currentPage === 'capabilities' && <CapabilitiesPage />}
+        {currentPage === 'submit' && <SubmitPage />}
+        {currentPage === 'results' && <ResultsPage />}
+      </main>
+
+      <footer className="max-w-4xl mx-auto text-center py-6 text-sm text-slate-500">
+        <p>&copy; {new Date().getFullYear()} Siddharth Santhosh. All rights reserved.</p>
       </footer>
-      
-      <Analytics />
     </div>
   );
 };
