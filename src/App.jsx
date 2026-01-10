@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/next"
 import React, { useState, useRef } from 'react';
 import { 
   Upload, Wind, BarChart3, CheckCircle, AlertCircle, 
