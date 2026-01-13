@@ -411,14 +411,42 @@ const ResultsPage = () => (
     </div>
   );
 
-  return (
-    // Added 'flex flex-col' and 'min-h-screen' to the container
+return (
     <div className="min-h-screen bg-slate-50 p-4 md:p-8 font-sans flex flex-col">
-      <nav className="max-w-4xl mx-auto w-full flex items-center justify-between mb-12 bg-white p-3 rounded-2xl border border-slate-200 shadow-sm">
-        {/* ... Nav Content ... */}
+      {/* --- UPDATED NAVIGATION --- */}
+      <nav className="max-w-4xl mx-auto w-full flex items-center justify-between mb-12 bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
+        <div className="flex items-center gap-2">
+          <div className="bg-blue-600 p-2 rounded-lg">
+            <Wind className="text-white" size={20} />
+          </div>
+          <span className="font-black text-xl tracking-tighter text-slate-900">VENKLY</span>
+        </div>
+        
+        <div className="hidden md:flex items-center gap-1">
+          {navItems.map((item) => (
+            <button
+              key={item.id}
+              onClick={() => setCurrentPage(item.id)}
+              className={`px-4 py-2 rounded-xl text-sm font-bold transition-all ${
+                currentPage === item.id 
+                ? 'bg-blue-50 text-blue-600' 
+                : 'text-slate-500 hover:bg-slate-50 hover:text-slate-900'
+              }`}
+            >
+              {item.label}
+            </button>
+          ))}
+        </div>
+
+        {/* Mobile simple toggle (Optional) */}
+        <button 
+          onClick={() => setCurrentPage('submit')}
+          className="bg-blue-600 text-white px-4 py-2 rounded-xl text-sm font-bold md:hidden"
+        >
+          Submit
+        </button>
       </nav>
 
-      {/* Added 'flex-grow' to the main content area */}
       <main className="max-w-6xl mx-auto flex-grow w-full">
         {currentPage === 'home' && <HomePage />}
         {currentPage === 'capabilities' && <CapabilitiesPage />}
