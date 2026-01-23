@@ -374,7 +374,7 @@ const ResultsPage = () => (
 
   const HomePage = () => (
     <div className="space-y-16">
-      <section className="text-center py-bg-gradient-to-br from-blue-600 via-indigo-700 to-slate-900 rounded-[3rem] px-6 text-white shadow-2xl relative overflow-hidden">
+      <section className="text-center py-20 bg-gradient-to-br from-blue-600 via-indigo-700 to-slate-900 rounded-[3rem] px-6 text-white shadow-2xl relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
           <Wind className="absolute top-10 right-10 scale-[5]" />
         </div>
