@@ -180,7 +180,7 @@ const ResultsPage = () => (
         <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
           <Gauge className="text-blue-600 mb-3" size={28} />
           <h3 className="font-bold text-slate-900">Max Wind Speed</h3>
-          <p className="text-2xl font-black text-blue-600">20 m/s</p>
+          <p className="text-2xl font-black text-blue-600">1 m/s</p>
           <p className="text-xs text-slate-500 mt-1 italic">Variable & Adjustable</p>
         </div>
         <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm md:col-span-2">
@@ -351,7 +351,7 @@ const ResultsPage = () => (
             <div className="grid md:grid-cols-3 gap-4">
               {[
                 "Design fits within 30 × 22 × 15 cm",
-                "Suitable for wind speeds up to 20 m/s",
+                "Suitable for wind speeds up to 1 m/s",
                 "Acknowledged low-Reynolds-number test"
               ].map((text, i) => (
                 <label key={i} className="flex items-center gap-3 bg-white p-4 rounded-xl border border-amber-200 cursor-pointer hover:shadow-sm transition-shadow">
@@ -374,7 +374,7 @@ const ResultsPage = () => (
 
   const HomePage = () => (
     <div className="space-y-16">
-      <section className="text-center py-20 bg-gradient-to-br from-blue-600 via-indigo-700 to-slate-900 rounded-[3rem] px-6 text-white shadow-2xl relative overflow-hidden">
+      <section className="text-center py-bg-gradient-to-br from-blue-600 via-indigo-700 to-slate-900 rounded-[3rem] px-6 text-white shadow-2xl relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
           <Wind className="absolute top-10 right-10 scale-[5]" />
         </div>
@@ -395,7 +395,7 @@ const ResultsPage = () => (
 
       <section className="grid md:grid-cols-3 gap-8">
         {[
-          { icon: <Wind />, color: "bg-blue-100 text-blue-600", title: "Physical Tunnel", text: "30×22×15 cm section, testing up to 20 m/s." },
+          { icon: <Wind />, color: "bg-blue-100 text-blue-600", title: "Physical Tunnel", text: "30×22×15 cm section, testing up to 1 m/s." },
           { icon: <BarChart3 />, color: "bg-emerald-100 text-emerald-600", title: "Live Data", text: "Access high-res CSV and performance graphs." },
           { icon: <CheckCircle />, color: "bg-purple-100 text-purple-600", title: "Validation", text: "The gold standard for engineering students." }
         ].map((item, i) => (
