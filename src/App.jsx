@@ -7,7 +7,7 @@ import {
 import { createClient } from '@supabase/supabase-js';
 
 // Import your logo here
-import logo from './src/assets/Untitled design-4.png';
+import logo from './assets/Untitled design-4.png';
 
 // ... (Keep all your existing Supabase and State logic exactly the same) ...
 
