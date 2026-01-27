@@ -1,4 +1,4 @@
-import { Analytics } from "@vercel/analytics/react";
+ import { Analytics } from "@vercel/analytics/react";
 import React, { useState, useRef } from 'react';
 import { 
   Upload, Wind, BarChart3, CheckCircle, AlertCircle, 
@@ -6,13 +6,17 @@ import {
 } from 'lucide-react';
 import { createClient } from '@supabase/supabase-js';
 
-// ... all your Supabase config and Page components go here ...
+// Import your logo here
+import logo from './src/assets/Untitled design-4.png';
+
+// ... (Keep all your existing Supabase and State logic exactly the same) ...
 
 const supabaseUrl = 'https://rtllzorijfwihfrydncg.supabase.co';
 const supabaseKey = 'sb_publishable_LFKAeATxFCXRb3uG3bq2jQ_uqQETKeU';
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 const App = () => {
+  // ... (Keep all your existing state and handler functions) ...
   const [description, setDescription] = useState('');
   const [currentPage, setCurrentPage] = useState('home');
   const [submitted, setSubmitted] = useState(false);
@@ -88,6 +92,8 @@ const handleFormSubmit = async (e) => {
     
     setLoading(false);
 };
+
+// ... (Keep ResultsPage, CapabilitiesPage, SubmitPage, and HomePage components as they are) ...
 const ResultsPage = () => (
     <div className="max-w-4xl mx-auto space-y-8 pb-20">
       <div className="mb-10 text-center">
@@ -142,10 +148,14 @@ const ResultsPage = () => (
             </div>
 
             <div className="grid grid-cols-2 gap-4">
-              <button disabled className="p-4 rounded-2xl border border-slate-200 text-slate-400 text-sm font-bold flex flex-col items-center gap-2 cursor-not-allowed">
-                <Download size={20} /> Data (CSV)
+              <button 
+                onClick={() => window.open(`${supabaseUrl}/storage/v1/object/public/design-files/${foundResult.file_url}`)}
+                className="p-4 rounded-2xl border border-blue-200 text-blue-600 text-sm font-bold flex flex-col items-center gap-2 hover:bg-blue-50 transition-all"
+              >
+                <Download size={20} /> Download Data
               </button>
-              <button disabled className="p-4 rounded-2xl border border-slate-200 text-slate-400 text-sm font-bold flex flex-col items-center gap-2 cursor-not-allowed">
+              
+              <button className="p-4 rounded-2xl border border-slate-200 text-slate-400 text-sm font-bold flex flex-col items-center gap-2 cursor-not-allowed">
                 <BarChart3 size={20} /> Analysis PDF
               </button>
             </div>
@@ -155,18 +165,6 @@ const ResultsPage = () => (
       </div>
     </div>
   );
-  <div className="grid grid-cols-2 gap-4">
-  <button 
-    onClick={() => window.open(`${supabaseUrl}/storage/v1/object/public/design-files/${foundResult.file_url}`)}
-    className="p-4 rounded-2xl border border-blue-200 text-blue-600 text-sm font-bold flex flex-col items-center gap-2 hover:bg-blue-50 transition-all"
-  >
-    <Download size={20} /> Download Data
-  </button>
-  
-  <button className="p-4 rounded-2xl border border-slate-200 text-slate-400 text-sm font-bold flex flex-col items-center gap-2 cursor-not-allowed">
-    <BarChart3 size={20} /> Analysis PDF
-  </button>
-</div>
 
   const CapabilitiesPage = () => (
     <div className="max-w-4xl mx-auto space-y-12 pb-20">
@@ -175,7 +173,6 @@ const ResultsPage = () => (
         <p className="text-slate-500 mt-2">Experimental constraints and facility specifications for the Venkly Wind Tunnel to experiment with your aerodynamics.</p>
       </div>
 
-      {/* Wind Tunnel Specs */}
       <div className="grid md:grid-cols-3 gap-6">
         <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
           <Gauge className="text-blue-600 mb-3" size={28} />
@@ -198,7 +195,6 @@ const ResultsPage = () => (
         </div>
       </div>
 
-      {/* Can / Cannot Test */}
       <div className="grid md:grid-cols-2 gap-8">
         <div className="bg-emerald-50/50 p-8 rounded-3xl border border-emerald-100">
           <h3 className="text-emerald-800 font-bold text-lg mb-4 flex items-center gap-2">
@@ -212,7 +208,6 @@ const ResultsPage = () => (
             <li>• Relative performance trend analysis</li>
             <li>• Great for Wind Tunnel Testing for STEM</li>
             <li>• Student-friendly</li>
-
           </ul>
         </div>
         <div className="bg-rose-50/50 p-8 rounded-3xl border border-rose-100">
@@ -229,7 +224,6 @@ const ResultsPage = () => (
         </div>
       </div>
 
-      {/* Experimental Reality Section */}
       <div className="bg-slate-900 text-white p-10 rounded-3xl relative overflow-hidden">
         <div className="relative z-10">
           <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
@@ -298,7 +292,6 @@ const ResultsPage = () => (
         </div>
 
         <form onSubmit={handleFormSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-8 pb-20">
-          {/* A. Basic Info */}
           <div className="space-y-6 bg-white p-8 rounded-2xl border border-slate-200 shadow-sm">
             <h3 className="font-bold text-lg flex items-center gap-2 text-blue-600">
               <FileText size={20} /> Project Details
@@ -328,7 +321,6 @@ const ResultsPage = () => (
             </div>
           </div>
 
-          {/* B. Design Files */}
           <div className="space-y-6 bg-white p-8 rounded-2xl border border-slate-200 shadow-sm">
             <h3 className="font-bold text-lg flex items-center gap-2 text-blue-600">
               <Upload size={20} /> Design Files
@@ -343,7 +335,6 @@ const ResultsPage = () => (
             </div>
           </div>
 
-          {/* C. Physical Constraints */}
           <div className="md:col-span-2 space-y-4 bg-amber-50/50 p-8 rounded-2xl border border-amber-100">
             <h3 className="font-bold text-lg flex items-center gap-2 text-amber-700">
               <AlertCircle size={20} /> Physical Constraints Confirmation
@@ -383,7 +374,6 @@ const ResultsPage = () => (
         </h1>
         <p className="text-xl opacity-80 mb-10 max-w-2xl mx-auto font-medium">
           Use your CAD model for wind tunnel testing, where students can access free physical wind tunnel results. The best file formats to submit CAD models are .step and .stl. It is low-cost (free), and can be used for scaled models!
-          
         </p>
         <button 
           onClick={() => setCurrentPage('submit')}
@@ -413,7 +403,6 @@ const ResultsPage = () => (
 
 return (
     <div className="min-h-screen bg-slate-50 p-4 md:p-8 font-sans flex flex-col">
-      {/* --- UPDATED NAVIGATION --- */}
       <nav className="max-w-4xl mx-auto w-full flex items-center justify-between mb-12 bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
         <div className="flex items-center gap-2">
           <div className="bg-blue-600 p-2 rounded-lg">
@@ -438,7 +427,6 @@ return (
           ))}
         </div>
 
-        {/* Mobile simple toggle (Optional) */}
         <button 
           onClick={() => setCurrentPage('submit')}
           className="bg-blue-600 text-white px-4 py-2 rounded-xl text-sm font-bold md:hidden"
@@ -454,13 +442,21 @@ return (
         {currentPage === 'results' && <ResultsPage />}
       </main>
 
-      <footer className="max-w-4xl mx-auto w-full text-center py-10 text-sm text-slate-500 border-t border-slate-200 mt-12 space-y-2">
+      {/* --- UPDATED FOOTER WITH LOGO --- */}
+      <footer className="max-w-4xl mx-auto w-full text-center py-10 text-sm text-slate-500 border-t border-slate-200 mt-12 space-y-2 relative">
         <p>If you want the fan details or want to buy the fan yourself, please <a href="https://powerstarelectricals.co.uk/industrial-extractor-exhaust-wall-mounted-plate-fan-with-speed-controller-1064-p.asp" target="_blank" rel="noopener noreferrer" className="text-blue-600 font-bold hover:underline">visit that website</a>.</p>
         <p>&copy; {new Date().getFullYear()} Siddharth Santhosh. All rights reserved.</p>
+        
+        <img 
+          src={logo} 
+          alt="Logo" 
+          className="absolute bottom-0 right-0 w-12 h-12 object-contain opacity-80"
+        />
       </footer>
       
       <Analytics />
     </div>
   );
 };
+
 export default App;
