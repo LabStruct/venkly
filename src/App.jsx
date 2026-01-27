@@ -454,7 +454,8 @@ return (
         {currentPage === 'results' && <ResultsPage />}
       </main>
 
-      <footer className="max-w-4xl mx-auto w-full text-center py-10 text-sm text-slate-500 border-t border-slate-200 mt-12">
+      <footer className="max-w-4xl mx-auto w-full text-center py-10 text-sm text-slate-500 border-t border-slate-200 mt-12 space-y-2">
+        <p>If you want the fan details or want to buy the fan yourself, please <a href="https://powerstarelectricals.co.uk/industrial-extractor-exhaust-wall-mounted-plate-fan-with-speed-controller-1064-p.asp" target="_blank" rel="noopener noreferrer" className="text-blue-600 font-bold hover:underline">visit that website</a>.</p>
         <p>&copy; {new Date().getFullYear()} Siddharth Santhosh. All rights reserved.</p>
       </footer>
       
