@@ -1,4 +1,4 @@
- import { Analytics } from "@vercel/analytics/react";
+import { Analytics } from "@vercel/analytics/react";
 import React, { useState, useRef } from 'react';
 import { 
   Upload, Wind, BarChart3, CheckCircle, AlertCircle, 
@@ -96,7 +96,7 @@ const handleFormSubmit = async (e) => {
 // ... (Keep ResultsPage, CapabilitiesPage, SubmitPage, and HomePage components as they are) ...
 const ResultsPage = () => (
     <div className="max-w-4xl mx-auto space-y-8 pb-20">
-      <div className="mb-10 text-center">
+      <div className="mb-0 text-center">
         <h2 className="text-3xl font-black text-slate-900 tracking-tight">Submission Status & Results</h2>
         <p className="text-slate-500 mt-2">Enter your Submission ID to check progress or download test data.</p>
       </div>
@@ -177,7 +177,7 @@ const ResultsPage = () => (
         <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
           <Gauge className="text-blue-600 mb-3" size={28} />
           <h3 className="font-bold text-slate-900">Max Wind Speed</h3>
-          <p className="text-2xl font-black text-blue-600">1 m/s</p>
+          <p className="text-2xl font-black text-blue-600">20 m/s</p>
           <p className="text-xs text-slate-500 mt-1 italic">Variable & Adjustable</p>
         </div>
         <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm md:col-span-2">
@@ -342,7 +342,7 @@ const ResultsPage = () => (
             <div className="grid md:grid-cols-3 gap-4">
               {[
                 "Design fits within 30 × 22 × 15 cm",
-                "Suitable for wind speeds up to 1 m/s",
+                "Suitable for wind speeds up to 20 m/s",
                 "Acknowledged low-Reynolds-number test"
               ].map((text, i) => (
                 <label key={i} className="flex items-center gap-3 bg-white p-4 rounded-xl border border-amber-200 cursor-pointer hover:shadow-sm transition-shadow">
