@@ -450,7 +450,7 @@ return (
         <img 
           src={logo} 
           alt="Logo" 
-          className="absolute bottom-0 right-0 w-60 h-30 object-contain opacity-80"
+          className="absolute bottom-0 right-30 w-60 h-30 object-contain opacity-80"
         />
       </footer>
       
