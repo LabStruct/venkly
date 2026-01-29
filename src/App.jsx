@@ -9,14 +9,11 @@ import { createClient } from '@supabase/supabase-js';
 // Import your logo here
 import logo from './assets/Untitled design-4.png';
 
-// ... (Keep all your existing Supabase and State logic exactly the same) ...
-
 const supabaseUrl = 'https://rtllzorijfwihfrydncg.supabase.co';
 const supabaseKey = 'sb_publishable_LFKAeATxFCXRb3uG3bq2jQ_uqQETKeU';
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 const App = () => {
-  // ... (Keep all your existing state and handler functions) ...
   const [description, setDescription] = useState('');
   const [currentPage, setCurrentPage] = useState('home');
   const [submitted, setSubmitted] = useState(false);
@@ -93,7 +90,6 @@ const handleFormSubmit = async (e) => {
     setLoading(false);
 };
 
-// ... (Keep ResultsPage, CapabilitiesPage, SubmitPage, and HomePage components as they are) ...
 const ResultsPage = () => (
     <div className="max-w-4xl mx-auto space-y-8 pb-20">
       <div className="mb-0 text-center">
@@ -442,19 +438,17 @@ return (
         {currentPage === 'results' && <ResultsPage />}
       </main>
 
-      {/* --- UPDATED FOOTER WITH LOGO --- */}
       <footer className="max-w-4xl mx-auto w-full text-center py-10 text-sm text-slate-500 border-t border-slate-200 mt-12 space-y-2 relative">
-  <p>If you want the fan details or want to buy the fan yourself,</p>
-  <p>
-    please <a href="https://powerstarelectricals.co.uk/industrial-extractor-exhaust-wall-mounted-plate-fan-with-speed-controller-1064-p.asp" target="_blank" rel="noopener noreferrer" className="text-blue-600 font-bold hover:underline">visit powerstarelectricals.co.uk</a>.
-  </p>
-  <p>&copy; {new Date().getFullYear()} Siddharth Santhosh. All rights reserved.</p>
-</footer>
+        <p>If you want the fan details or want to buy the fan yourself,</p>
+        <p>
+          please <a href="https://powerstarelectricals.co.uk/industrial-extractor-exhaust-wall-mounted-plate-fan-with-speed-controller-1064-p.asp" target="_blank" rel="noopener noreferrer" className="text-blue-600 font-bold hover:underline">visit powerstarelectricals.co.uk</a>.
+        </p>
+        <p>&copy; {new Date().getFullYear()} Siddharth Santhosh. All rights reserved.</p>
         
         <img 
           src={logo} 
           alt="Logo" 
-          className="absolute bottom-0 right-0 w-60 h-50 object-contain opacity-80"
+          className="absolute bottom-0 right-0 w-60 h-48 object-contain opacity-80"
         />
       </footer>
       
