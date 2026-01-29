@@ -444,9 +444,12 @@ return (
 
       {/* --- UPDATED FOOTER WITH LOGO --- */}
       <footer className="max-w-4xl mx-auto w-full text-center py-10 text-sm text-slate-500 border-t border-slate-200 mt-12 space-y-2 relative">
-        <p>If you want the fan details or want to buy the fan yourself,</p>
-        <p align="center">please <a href="https://powerstarelectricals.co.uk/industrial-extractor-exhaust-wall-mounted-plate-fan-with-speed-controller-1064-p.asp" target="_blank" rel="noopener noreferrer" className="text-blue-600 font-bold hover:underline">visit powerstarelectricals.co.uk</a>.</p>
-        <p>&copy; {new Date().getFullYear()} Siddharth Santhosh. All rights reserved.</p>
+  <p>If you want the fan details or want to buy the fan yourself,</p>
+  <p>
+    please <a href="https://powerstarelectricals.co.uk/industrial-extractor-exhaust-wall-mounted-plate-fan-with-speed-controller-1064-p.asp" target="_blank" rel="noopener noreferrer" className="text-blue-600 font-bold hover:underline">visit powerstarelectricals.co.uk</a>.
+  </p>
+  <p>&copy; {new Date().getFullYear()} Siddharth Santhosh. All rights reserved.</p>
+</footer>
         
         <img 
           src={logo} 
