@@ -385,7 +385,7 @@ const ResultsPage = () => (
 
       <section className="grid md:grid-cols-3 gap-8">
         {[
-          { icon: <Wind />, color: "bg-blue-100 text-blue-600", title: "Physical Tunnel", text: "30×22×15 cm section, testing up to 1 m/s." },
+          { icon: <Wind />, color: "bg-blue-100 text-blue-600", title: "Physical Tunnel", text: "30×22×15 cm section, testing up to 20 m/s." },
           { icon: <BarChart3 />, color: "bg-emerald-100 text-emerald-600", title: "Live Data", text: "Access high-res CSV and performance graphs." },
           { icon: <CheckCircle />, color: "bg-purple-100 text-purple-600", title: "Validation", text: "The gold standard for engineering students." }
         ].map((item, i) => (
@@ -444,7 +444,7 @@ return (
 
       {/* --- UPDATED FOOTER WITH LOGO --- */}
       <footer className="max-w-4xl mx-auto w-full text-center py-10 text-sm text-slate-500 border-t border-slate-200 mt-12 space-y-2 relative">
-        <p>If you want the fan details or want to buy the fan yourself, please <a href="https://powerstarelectricals.co.uk/industrial-extractor-exhaust-wall-mounted-plate-fan-with-speed-controller-1064-p.asp" target="_blank" rel="noopener noreferrer" className="text-blue-600 font-bold hover:underline">visit that website</a>.</p>
+        <p>If you want the fan details or want to buy the fan yourself, please <a href="https://powerstarelectricals.co.uk/industrial-extractor-exhaust-wall-mounted-plate-fan-with-speed-controller-1064-p.asp" target="_blank" rel="noopener noreferrer" className="text-blue-600 font-bold hover:underline">visit powerstarelectricals.co.uk</a>.</p>
         <p>&copy; {new Date().getFullYear()} Siddharth Santhosh. All rights reserved.</p>
         
         <img 
